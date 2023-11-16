@@ -14,3 +14,4 @@ document.addEventListener("click", function (e) {
     navbarNav.classList.remove("active");
   }
 });
+

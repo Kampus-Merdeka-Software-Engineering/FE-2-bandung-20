@@ -98,76 +98,30 @@
             display: none;
         }
 
-        /*Buat slide nya*/
 
-        .slides {
-            width: 100%;
-            position: relative;
-        }
-
-        .slides .slide {
-            display: none;
-        }
-
-        .slides .slide img {
-            width: 100%;
-            animation-name: fade;
-            animation-duration: 1.5s;
-            margin-top: 5.4rem;
-        }
-
-        .slides .navigation {
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .slides .navigation .prev,
-        .slides .navigation .next {
-            cursor: pointer;
-            padding: 16px;
-            font-weight: bold;
-            font-size: 20px;
-            color: white;
-            background: rgba(0, 0, 0, 0.2);
-            user-select: none;
-            transition: 0.6s ease;
-        }
-
-        .slides .navigation .prev:hover,
-        .slides .navigation .next:hover {
-            background: rgba(0, 0, 0, 1);
-        }
-
-        @keyframes fade {
-            from {
-                opacity: 0.3
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-        .hero .content {
+        /*table*/
+        h2 {
             text-align: center;
-
+            margin-top: 8rem;
+            color: #1c1412;
         }
 
-        .hero .content .cta {
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            font-size: 1.4rem;
-            color: #e7f6f6;
-            background-color: #af9898;
-            border-radius: 0.5rem;
-            box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.5);
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3.3rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #262323;
+            padding: 10px;
+            text-align: left;
+            color: #241713;
+        }
+
+        th {
+            background-color: #ebe1e1;
         }
 
         /*Laptop*/
@@ -176,11 +130,7 @@
                 font-size: 75%;
             }
 
-            .slides .navigation .prev,
-            .slides .navigation .next {
-                font-size: 18px;
-                padding: 13px;
-            }
+
         }
 
         /*Tablet*/
@@ -224,23 +174,6 @@
             .navbar .navbar-nav a:hover::after {
                 transform: scaleX(0.2);
             }
-
-            .slides .navigation {
-                top: 60%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: flex;
-                width: 100%;
-                size: 0cap;
-            }
-
-            .slides .navigation .prev,
-            .slides .navigation .next {
-                font-size: 12px;
-                padding: 7px;
-            }
-
-
         }
     </style>
 </head>
@@ -260,62 +193,86 @@
     </nav>
     <!--navbar End-->
 
-    <!--menu    -->
+    <!--table    -->
 
-    <div class="slides">
-        <div class="slide">
-            <img src="assets/menu/1.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="assets/menu/2.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="assets/menu/3.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="assets/menu/4.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="assets/menu/5.jpg" alt="">
-        </div>
-        <div class="slide">
-            <img src="assets/menu/6.jpg" alt="">
-        </div>
-        <div class="navigation">
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(-1)">&#10095;</a>
-        </div>
-    </div>
+    <h2>Daftar BOOKING</h2>
 
-    <div class="hero" id="home">
-        <main class="content">
-            <a href="#" class="cta">BOOKING NOW</a>
-        </main>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Judul</th>
+                <th></th>
+                <th>Jam</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Repeat the following row for each entry -->
+            <!-- <tr>
+                <td>1</td>
+                <td>John Doe</td>
+                <td>2023-11-13</td>
+                <td>14:30</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane Smith</td>
+                <td>2023-11-14</td>
+                <td>10:45</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Alice Johnson</td>
+                <td>2023-11-15</td>
+                <td>16:00</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Bob Williams</td>
+                <td>2023-11-16</td>
+                <td>09:30</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Eva Brown</td>
+                <td>2023-11-17</td>
+                <td>12:15</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Michael Davis</td>
+                <td>2023-11-18</td>
+                <td>14:45</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Sophie White</td>
+                <td>2023-11-19</td>
+                <td>11:00</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Charlie Lee</td>
+                <td>2023-11-20</td>
+                <td>15:30</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Grace Turner</td>
+                <td>2023-11-21</td>
+                <td>18:45</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>David Miller</td>
+                <td>2023-11-22</td>
+                <td>08:00</td>
+            </tr> -->
+            <!-- Repeat the above row for each entry -->
+        </tbody>
+    </table>
 
     <script>
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("slide");
-            if (n > slides.length) {
-                slideIndex = 1;
-            }
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex - 1].style.display = "block";
-        }
-
         // Togel Class Active
         const navbarNav = document.querySelector(".navbar-nav");
 
@@ -332,6 +289,8 @@
                 navbarNav.classList.remove("active");
             }
         });
+
+
 
     </script>
     <!--Feature Icon-->
