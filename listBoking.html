@@ -197,80 +197,21 @@
 
     <h2>Daftar BOOKING</h2>
 
-    <table>
+    <input type="text" id="search" placeholder="search">
+
+    <table border="1">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Judul</th>
-                <th></th>
-                <th>Jam</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Detail</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Repeat the following row for each entry -->
-            <!-- <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>2023-11-13</td>
-                <td>14:30</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>2023-11-14</td>
-                <td>10:45</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Alice Johnson</td>
-                <td>2023-11-15</td>
-                <td>16:00</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Bob Williams</td>
-                <td>2023-11-16</td>
-                <td>09:30</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Eva Brown</td>
-                <td>2023-11-17</td>
-                <td>12:15</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Michael Davis</td>
-                <td>2023-11-18</td>
-                <td>14:45</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Sophie White</td>
-                <td>2023-11-19</td>
-                <td>11:00</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Charlie Lee</td>
-                <td>2023-11-20</td>
-                <td>15:30</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Grace Turner</td>
-                <td>2023-11-21</td>
-                <td>18:45</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>David Miller</td>
-                <td>2023-11-22</td>
-                <td>08:00</td>
-            </tr> -->
-            <!-- Repeat the above row for each entry -->
-        </tbody>
+        <tbody></tbody>
     </table>
+
+    <div id="detail"></div>
 
     <script>
         // Togel Class Active
@@ -290,6 +231,68 @@
             }
         });
 
+
+        //Get Data jadi tabel
+        const tbody = document.querySelector('tbody')
+        const detail = document.getElementById('detail')
+        const searchForm = document.getElementById('search')
+        let usersData = [];
+
+        const loadData = async () => {
+            try {
+                const url = await fetch('https://jsonplaceholder.typicode.com/users');
+                usersData = await url.json();
+                console.log(usersData)
+                loadUserData(usersData);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        const loadUserData = (data) => {
+            let no = 1;
+            const output = data.map((el) => {
+                return `
+                <tr>
+                    <td>` + (no++) + `</td>
+                    <td>${el.name}</td>
+                    <td>${el.email}</td>
+                    <td><button onclick='showDetail(${el.id})'>Detail</button></td>
+                </tr>
+                `
+            }).join('')
+            tbody.innerHTML = output;
+        }
+
+
+        function showDetail(id) {
+            fetch('https://jsonplaceholder.typicode.com/users/' + id)
+                .then((res) => res.json())
+                .then((data) => {
+                    detail.innerHTML = ''
+                    detail.insertAdjacentHTML('beforeend', `
+                            <ul>
+                                <li>${data.name}</li>
+                                <li>${data.username}</li>
+                                <li>${data.email}</li>
+                                <li>${data.address.city}</li>
+                                <li>${data.phone}</li>
+                            </ul>
+                    `)
+                })
+        }
+
+        searchForm.addEventListener('keyup', (e) => {
+            const value = e.target.value.toLowerCase();
+            const input = usersData.filter((data) => {
+                return (
+                    data.name.toLowerCase().includes(value)
+                )
+            })
+            loadUserData(input)
+        })
+
+        loadData()
 
 
     </script>
