@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--Fonst-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;1,300&display=swap"
+        rel="stylesheet" />
+
+    <!--My Style-->
+    <link rel="stylesheet" href="css/list.css" />
+
+    <!--Feature icons-->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+</head>
+
+<body>
+    <!--NavBar Start -->
+    <nav class="navbar">
+        <a href="#" class="navbar-logo"><span>Twenty</span>.Restaurant</a>
+
+        <div class="navbar-nav">
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About Us</a>
+            <a href="list_boking.html">ListBooking</a>
+        </div>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+    </nav>
+    <!--navbar End-->
+
+    <!--table    -->
+
+    <h2>Daftar BOOKING</h2>
+
+    <input type="text" id="search" placeholder="searchbyname">
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>jam</th>
+                <th>tanggal</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Togel Class Active
+        const navbarNav = document.querySelector(".navbar-nav");
+
+        // Ketika hamburger menu diklik
+        document.querySelector("#hamburger-menu").onclick = () => {
+            navbarNav.classList.toggle("active");
+        };
+
+        //klik diluar hamburger untuk exit
+        const hamburger = document.querySelector("#hamburger-menu");
+
+        document.addEventListener("click", function (e) {
+            if (!hamburger.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove("active");
+            }
+        });
+
+
+        //Get Data jadi tabel
+        const tbody = document.querySelector('tbody')
+        // const detail = document.getElementById('detail')
+        const searchForm = document.getElementById('search')
+        let usersData = [];
+
+        const loadData = async () => {
+            try {
+                const url = await fetch('http://localhost:3000/list');
+                usersData = await url.json();
+                // console.log(usersData)
+                loadUserData(usersData);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        const loadUserData = (data) => {
+            let no = 1;
+            const output = data.map((el) => {
+                return `
+                <tr>
+                    <td>` + (no++) + `</td>
+                    <td>${el.name}</td>
+                    <td>${el.email}</td>
+                    <td>${el.time}</td>
+                    <td>${el.date}</td>
+                </tr>
+                `
+            }).join('')
+            tbody.innerHTML = output;
+        }
+
+
+        function showDetail(id) {
+            fetch('http://localhost:3000/list' + id)
+                .then((res) => res.json())
+                .then((data) => {
+                    detail.innerHTML = ''
+                    detail.insertAdjacentHTML('beforeend', `
+                            <ul>
+                                <li>${data.name}</li>
+                                <li>${data.people}</li>
+                                <li>${data.email}</li>
+                                <li>${data.address.city}</li>
+                                <li>${data.phone}</li>
+                            </ul>
+                    `)
+                })
+        }
+
+        searchForm.addEventListener('keyup', (e) => {
+            const value = e.target.value.toLowerCase();
+            const input = usersData.filter((data) => {
+                return (
+                    data.name.toLowerCase().includes(value)
+                )
+            })
+            loadUserData(input)
+        })
+
+        loadData()
+
+
+    </script>
+    <!--Feature Icon-->
+    <script>
+        feather.replace();
+    </script>
+
+
+
+</body>
+
+</html>

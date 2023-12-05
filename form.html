@@ -9,123 +9,7 @@
     <title>Form-booking</title>
 
     <!--Gaya-->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        .main_bg {
-            background-image: url(assets/ada.jpg);
-            max-width: 1280px;
-            height: 800px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-        }
-
-        .form {
-            width: 650px;
-        }
-
-        .form-text {
-            text-align: center;
-            margin: 0 0 40px 0;
-        }
-
-        .form-text h1 span img {
-            margin: 0 10px;
-
-        }
-
-        .form-text h1 {
-            color: #e6b345;
-            font-family: 'Akaya Telivigala', cursive;
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .form-text p {
-            color: #1d1212;
-            font-family: 'Akaya Telivigala', cursive;
-            font-size: large;
-        }
-
-        .main-form div {
-            margin: 10px 10px;
-            width: 300px;
-            display: inline-block;
-        }
-
-        .main-form div input {
-            width: 100%;
-            font-family: 'Akaya Telivigala', cursive;
-            background: none;
-            border: 1px solid #3d3823;
-            ;
-            font-size: 20px;
-            color: #100e0b;
-            outline: none;
-            padding: 3px 0 3px 10px;
-            margin-top: 10px;
-        }
-
-        .main-form div select {
-            width: 104%;
-            font-family: 'Akaya Telivigala', cursive;
-            background: none;
-            border: 1px solid #1d1c18;
-            ;
-            font-size: 20px;
-            color: #292618;
-            outline: none;
-            padding: 3px 0 3px 10px;
-            margin-top: 10px;
-        }
-
-        .main-form div span {
-            width: 100%;
-            font-family: 'Akaya Telivigala', cursive;
-            color: #e6b345;
-            font-size: 25px;
-        }
-
-        #submit {
-            width: 100%;
-            text-align: center;
-        }
-
-        #submit input {
-            font-family: 'Akaya Telivigala', cursive;
-            width: 200px;
-            background-color: #e6b345;
-            color: black !important;
-            transition: all .3s;
-        }
-
-        #submit input:hover {
-            font-family: 'Akaya Telivigala', cursive;
-            width: 200px;
-            background-color: black !important;
-            /* color: #FAF0E4 !important; */
-        }
-
-        #submit input:active {
-            font-size: 19px;
-            background-color: rgb(46, 20, 5) !important;
-            /* color: #fff !important; */
-        }
-
-
-        @media screen and (max-width:710px) {
-            .main-form {
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/form.css" />
 </head>
 
 <body class="main_bg">
@@ -138,19 +22,19 @@
             <form id="bookingForm">
                 <div>
                     <span>Your full name ?</span>
-                    <input type="text" name="name" id="name" placeholder="Write your name here..." required>
+                    <input type="text" id="name" name="name" placeholder="Write your name here..." required>
                 </div>
                 <div>
                     <span>Your email address ?</span>
-                    <input type="email" name="email" id="email" placeholder="Write your email here..." required>
+                    <input type="email" id="email" name="email" placeholder="Write your email here..." required>
                 </div>
                 <div>
                     <span>Your phone number ?</span>
-                    <input type="phone" name="phone" id="phone" placeholder="Write your number here..." required>
+                    <input type="phone" id="phone" name="phone" placeholder="Write your number here..." required>
                 </div>
                 <div>
                     <span>How many people ?</span>
-                    <select name="people" id="people" required>
+                    <select id="people" name="people" required>
                         <option value="1">1 People</option>
                         <option value="2">2 People</option>
                         <option value="3">3 People</option>
@@ -162,65 +46,97 @@
                 </div>
                 <div>
                     <span for="appt">What time ?</span>
-                    <input type="time" id="appt" name="appt">
+                    <input type="time" id="time" name="time">
                 </div>
                 <div>
                     <span>What is the date ?</span>
-                    <input type="date" name="date" id="date" required>
+                    <input type="date" id="date" name="date" required>
                 </div>
 
                 <div id="submit">
-                    <input type="submit" value="SUBMIT" id="submitBtn">
+                    <input type="submit" id="submitBtn">
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Script js -->
-    
-<script>
-    document.getElementById("bookingForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Mencegah pengiriman formulir default
 
-        // Melakukan validasi formulir di sini jika diperlukan
-        var isValid = validateForm();
+    <script>
 
-        if (isValid) {
-            showAlertAndRedirect();
+        document.getElementById("bookingForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var isValid = validateForm();
+
+            if (isValid) {
+                sendForm();
+            }
+        });
+
+        function sendForm() {
+            const form = document.getElementById("bookingForm");
+            const formData = new FormData(form);
+            const formProps = {};
+
+            // Convert FormData to an object
+            formData.forEach((value, key) => {
+                formProps[key] = value;
+            });
+
+            // console.log(formProps, "ini formProps");
+
+            // Send data to the server
+            fetch("http://localhost:3000/list", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formProps),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("success:", data);
+                    showAlertAndRedirect();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
-    });
 
-    function validateForm() {
-        // Validasi nama
-        var name = document.getElementById("name").value;
-        if (name === "") {
-            alert("Mohon isi nama Anda.");
-            return false;
+        function validateForm() {
+            // Validation logic here...
+            var name = document.getElementById("name").value;
+            if (name === "") {
+                alert("Mohon isi nama Anda.");
+                return false;
+            }
+
+            // Validasi email
+            var email = document.getElementById("email").value;
+            if (email === "") {
+                alert("Mohon isi alamat email Anda.");
+                return false;
+            }
+
+            // Validasi nomor telepon
+            var phoneNumber = document.getElementById("phone").value;
+            if (!/^\d+$/.test(phoneNumber) || phoneNumber.length < 9) {
+                alert("Mohon isi nomor telepon dengan benar (tanpa huruf atau karakter khusus).");
+                return false;
+            }
+
+            // Validasi formulir lainnya di sini...
+
+
+            return true; // Form is considered valid for now
         }
 
-        // Validasi email
-        var email = document.getElementById("email").value;
-        if (email === "") {
-            alert("Mohon isi alamat email Anda.");
-            return false;
+        function showAlertAndRedirect() {
+            alert("Terima kasih sudah membooking!");
+            window.location.href = "index.html";
         }
 
-        // Validasi nomor telepon
-        var phoneNumber = document.getElementById("phone").value;
-        if (!/^\d+$/.test(phoneNumber) || phoneNumber.length < 9) {
-            alert("Mohon isi nomor telepon dengan benar (tanpa huruf atau karakter khusus).");
-            return false;
-        }
-
-        // Validasi formulir lainnya di sini...
-
-        return true; // Formulir valid
-    }
-
-    function showAlertAndRedirect() {
-        alert("Terima kasih sudah membooking!");
-        window.location.href = "index.html"; // Ganti dengan jalur aktual menuju halaman utama Anda
-    }
-</script>
+    </script>
 </body>
+
 </html>

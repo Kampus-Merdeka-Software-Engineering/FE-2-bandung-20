@@ -33,6 +33,7 @@ body {
   right: 0;
   z-index: 9999;
 }
+
 .navbar .navbar-logo {
   font-size: 2rem;
   font-weight: 700;
@@ -113,6 +114,7 @@ body {
 .about {
   padding: 10rem 7% 1.4rem;
 }
+
 .about h2 {
   text-align: center;
   font-size: 2.6rem;
@@ -128,13 +130,16 @@ body {
 .about .row .gambar {
   flex: 1 1rem;
 }
+
 .about .row .gambar img {
   width: 100%;
 }
+
 .about .row .content {
   flex: 1 1 35%;
   padding: 0 1rem;
 }
+
 .about .row .content p {
   margin-bottom: 0.8rem;
   font-size: 1.4rem;
@@ -142,6 +147,7 @@ body {
   line-height: 1.9;
   color: #1a1918;
 }
+
 .about .row .content p span {
   color: #e6b345;
   font-style: italic;
@@ -153,6 +159,7 @@ body {
 .open {
   padding: 10rem 7% 1.4rem;
 }
+
 .open h2 {
   text-align: center;
   font-size: 2.6rem;
@@ -168,13 +175,16 @@ body {
 .open .row .gambar {
   flex: 1 1 25rem;
 }
+
 .open .row .gambar img {
   width: 100%;
 }
+
 .open .row .content {
   flex: 1 1 35%;
   padding: 0 6rem 1rem;
 }
+
 .open .row .content p {
   margin-bottom: 0.8rem;
   font-size: 1.4rem;
@@ -182,6 +192,7 @@ body {
 
   color: #1a1918;
 }
+
 .open .row .content p span {
   color: #e8a30e;
 }
@@ -195,22 +206,26 @@ footer {
   padding: 0.8rem 0;
   margin-top: 0.8rem;
 }
+
 footer .alamat {
   color: #1c1b17;
   font-size: 1.5rem;
   font-weight: 400;
   font-style: oblique;
 }
+
 footer p {
-  color: #f1f0ed;
+  color: #151413;
   font-size: 1.3rem;
   height: 400;
 }
+
 footer .social {
   padding: 1rem 0;
 }
+
 footer .social a {
-  color: white;
+  color: rgb(17, 15, 15);
   margin: 0.5rem;
 }
 
@@ -248,6 +263,7 @@ footer .social a {
     right: 0;
     color: #e6b345;
   }
+
   .navbar .navbar-nav a {
     color: #7c6e50;
     display: block;
@@ -271,14 +287,17 @@ footer .social a {
   .about .row .gambar {
     flex: 1 1 45rem;
   }
+
   .about .row .gambar img {
     height: 24rem;
     object-fit: cover;
     object-position: center;
   }
+
   .about .row .content {
     padding: 0;
   }
+
   .about .row .content p {
     font-size: 1.6;
   }
@@ -286,6 +305,7 @@ footer .social a {
   .open .row {
     flex-wrap: wrap;
   }
+
   .open .row .gambar {
     flex: 1 1 45rem;
   }
