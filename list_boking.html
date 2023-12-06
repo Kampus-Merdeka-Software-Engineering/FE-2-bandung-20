@@ -81,7 +81,7 @@
 
         const loadData = async () => {
             try {
-                const url = await fetch('http://localhost:3000/list');
+                const url = await fetch('https://be-2-bandung-20-production.up.railway.app/list');
                 usersData = await url.json();
                 // console.log(usersData)
                 loadUserData(usersData);
@@ -108,7 +108,7 @@
 
 
         function showDetail(id) {
-            fetch('http://localhost:3000/list' + id)
+            fetch('https://be-2-bandung-20-production.up.railway.app/list' + id)
                 .then((res) => res.json())
                 .then((data) => {
                     detail.innerHTML = ''
