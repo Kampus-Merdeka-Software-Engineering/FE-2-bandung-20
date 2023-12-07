@@ -78,7 +78,7 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url(../assets/home/background.jpg);
+  background-image: url(https://source.unsplash.com/1600x900/?cafe);  /*../assets/home/background.jpg*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

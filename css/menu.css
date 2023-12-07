@@ -93,6 +93,7 @@ body {
     animation-name: fade;
     animation-duration: 1.5s;
     margin-top: 5.4rem;
+    height: 100%;
 }
 
 .slides .navigation {
