@@ -103,9 +103,9 @@ body {
   margin-top: 1rem;
   display: inline-block;
   padding: 0.5rem 1rem;
-  font-size: 1.4rem;
-  color: #e7f6f6;
-  background-color: #af9898;
+  font-size: 2rem;
+  color: white;
+  background-color: black;
   border-radius: 0.5rem;
   box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.5);
 }
@@ -189,8 +189,9 @@ body {
   margin-bottom: 0.8rem;
   font-size: 1.4rem;
   font-weight: 100;
-
+  text-align: left;
   color: #1a1918;
+  display: flex;
 }
 
 .open .row .content p span {
